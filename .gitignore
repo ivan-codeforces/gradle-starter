@@ -1,0 +1,5 @@
+.idea/gradle.xml
+*.bin
+.gradle
+.idea/jarRepositories.xml
+.idea/vcs.xml
