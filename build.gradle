@@ -21,3 +21,20 @@ test {
 println "configuration phase"
 println "gradle id: ${gradle.hashCode()}"
 println "root: ${rootProject.hashCode()}, ${gradle.rootProject.hashCode()}"
+
+//3
+task hello(description: "Hello task", group: "dmdev") {
+    println "configuration phase. Task hello"
+    println "task: $description, group: $group, actions: ${actions.size()}"
+}
+
+//1
+//tasks.findByName("hello").description("Hello task")
+hello.description = "Hello task"
+hello.group = "dmdev"
+//2
+hello{
+    println "configuration phase. Task hello"
+    description = "Hello task"
+    group = "dmdev"
+}
