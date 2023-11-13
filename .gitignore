@@ -3,3 +3,4 @@
 .gradle
 .idea/jarRepositories.xml
 .idea/vcs.xml
+.gradle/buildOutputCleanup
