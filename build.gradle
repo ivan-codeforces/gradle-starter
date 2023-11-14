@@ -4,6 +4,9 @@ plugins {
     id 'java'
 }
 
+//apply from: 'script.gradle'
+apply plugin: CustomPlugin
+
 ext{
     javaVersion = 17
     currentDate = LocalDate.now()
@@ -11,8 +14,8 @@ ext{
 println ext.javaVersion
 println "--- All properties:"
 println project.properties
-println "--- System:"
-println System.getProperty("sys.example")
+//println "--- System:"
+//println System.getProperty("sys.example")
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -30,73 +33,25 @@ test {
     useJUnitPlatform()
 }
 
-println "configuration phase"
-println "gradle id: ${gradle.hashCode()}"
-println "root: ${rootProject.hashCode()}, ${gradle.rootProject.hashCode()}"
+class CustomPlugin implements Plugin<Project>{
 
-//3
-task hello(description: "Hello task", group: "dmdev") {
-    println "configuration phase. Task hello"
+    @Override
+    void apply(Project project) {
+        def map = [description: "Hello task", group: "dmdev", type: DefaultTask]
+                project.task(map, "hello"){
+            println "configuration phase. Task hello"
 
-//    1
-    doLast{
-        println "execution phase, Action 1"
-    }
-//    2
-    doFirst(){
-        println "execution phase, Action 2"
-    }
-//    println "Task graph: $gradle.taskGraph.allTasks"
-    doLast{
-        println "execution phase, Action 3"
-    }
-    println "path task: $path"
-    println "task: $description, group: $group, actions: ${actions.size()}"
-}
-
-//1
-//tasks.findByName("hello").description("Hello task")
-hello.description = "Hello task"
-hello.group = "dmdev"
-//2
-hello{
-    println "configuration phase. Task hello"
-    description = "Hello task"
-    group = "dmdev"
-}
-
-task first{
-    doLast{
-        println "Task 1"
-    }
-}
-
-task second{
-    doLast{
-        println "Task 2"
-    }
-}
-
-task third{
-    doLast{
-        println "Task 3"
-    }
-}
-
-// 2 <-- 4
-task fourth{
-    doLast{
-        println "Task 4"
-    }
-}
-
-fourth.dependsOn second
-second.dependsOn first
-second.finalizedBy third
-
-gradle.taskGraph.whenReady {TaskExecutionGraph graph->
-    println "-----Graph:"
-    graph.allTasks.each {
-        println "$it.name"
+            doLast{
+                println "execution phase, Action 1"
+            }
+            doFirst(){
+                println "execution phase, Action 2"
+            }
+            doLast{
+                println "execution phase, Action 3"
+            }
+            println "path task: $path"
+            println "task: $description, group: $group, actions: ${actions.size()}"
+        }
     }
 }
