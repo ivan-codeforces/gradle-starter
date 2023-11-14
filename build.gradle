@@ -1,6 +1,18 @@
+import java.time.LocalDate
+
 plugins {
     id 'java'
 }
+
+ext{
+    javaVersion = 17
+    currentDate = LocalDate.now()
+}
+println ext.javaVersion
+println "--- All properties:"
+println project.properties
+println "--- System:"
+println System.getProperty("sys.example")
 
 group 'org.example'
 version '1.0-SNAPSHOT'
