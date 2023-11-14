@@ -7,6 +7,17 @@ plugins {
 //apply from: 'script.gradle'
 apply plugin: CustomPlugin
 
+sourceSets {
+    main{
+        java{
+//            srcDir("$buildDir")
+        }
+    }
+    test{
+
+    }
+}
+
 ext{
     javaVersion = 17
     currentDate = LocalDate.now()
