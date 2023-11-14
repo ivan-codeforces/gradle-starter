@@ -12,8 +12,8 @@ ext{
     currentDate = LocalDate.now()
 }
 println ext.javaVersion
-println "--- All properties:"
-println project.properties
+//println "--- All properties:"
+//println project.properties
 //println "--- System:"
 //println System.getProperty("sys.example")
 
