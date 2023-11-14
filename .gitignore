@@ -1,6 +1,5 @@
-.idea/gradle.xml
-*.bin
+# Ignore Gradle project-specific cache directory
 .gradle
-.idea/jarRepositories.xml
-.idea/vcs.xml
-.gradle/buildOutputCleanup
+
+# Ignore Gradle build output directory
+build
