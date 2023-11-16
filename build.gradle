@@ -7,6 +7,21 @@ plugins {
 //apply from: 'script.gradle'
 apply plugin: CustomPlugin
 
+repositories {
+//    mavenLocal()
+//    maven{
+//        name "nexus dmdev"
+//        url "https://nexus.dmdev/repository"
+//    }
+    mavenCentral()
+}
+
+dependencies {
+//    add('implementation', [group: "org.springframework", name: "spring-webmvc", version: "6.0.13"])
+//    add('implementation', "org.springframework:spring-webmvc:6.0.13")
+    implementation "org.springframework:spring-webmvc:6.0.13"
+}
+
 sourceSets {
     main{
         java{
