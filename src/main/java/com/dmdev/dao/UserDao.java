@@ -10,7 +10,8 @@ public class UserDao {
         return List.of(
                 new User(13, "Ivan"),
                 new User(23, "Petr"),
-                new User(33, "Sveta")
+                new User(33, "Sveta"),
+                new User(43, "Vasya")
         );
     }
 }
