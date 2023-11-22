@@ -1,15 +1,20 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group 'org.example'
-version 'unspecified'
+//version 'unspecified'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation project(":service")
+    implementation project(":common:util")
+    compileOnly "jakarta.servlet:jakarta.servlet-api:5.0.0"
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
@@ -17,3 +22,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+war {
+    archiveName "dmdev.war"
+}
+
+task deployTomcat(type: Copy) {
+    from(war.archiveFile.get())
+    into("C:/Users/ivank/Downloads/apache-tomcat-10.1.16/webapps")
+}
+deployTomcat.dependsOn war
+assemble.dependsOn deployTomcat
