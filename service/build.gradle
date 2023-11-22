@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'jacoco'
 }
 
 group 'org.example'
@@ -17,5 +18,9 @@ dependencies {
 }
 
 test {
+    maxParallelForks 3
     useJUnitPlatform()
 }
+
+test.finalizedBy jacocoTestReport
+jacocoTestReport.dependsOn test
