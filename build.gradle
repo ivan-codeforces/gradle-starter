@@ -1,4 +1,14 @@
 import java.time.LocalDate
+import org.apache.commons.lang3.StringUtils
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.apache.commons:commons-lang3:3.12.0'
+    }
+}
 
 plugins {
     id 'java'
@@ -7,6 +17,18 @@ plugins {
 
 //apply from: 'script.gradle'
 apply plugin: CustomPlugin
+
+allprojects{
+    group StringUtils.capitalize("dmdev")
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects{
+
+}
 
 repositories {
 //    mavenLocal()
@@ -86,17 +108,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-war{
-    archiveName "dmdev.war"
-}
-
-task deployTomcat(type: Copy){
-    from(war.archiveFile.get())
-    into("C:/Users/ivank/Downloads/apache-tomcat-10.1.16/webapps")
-}
-deployTomcat.dependsOn war
-assemble.dependsOn deployTomcat
 
 class CustomPlugin implements Plugin<Project>{
 
