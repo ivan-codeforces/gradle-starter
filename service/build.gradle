@@ -24,3 +24,18 @@ test {
 
 test.finalizedBy jacocoTestReport
 jacocoTestReport.dependsOn test
+
+jacocoTestCoverageVerification.dependsOn test
+
+ext{
+    release = true
+}
+
+task makeRealese{
+    inputs.property("realese", project.release)
+    outputs.file("$rootDir/scritp.gradle")
+
+    doLast{
+        println "release in progress ..."
+    }
+}
