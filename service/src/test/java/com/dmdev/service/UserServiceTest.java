@@ -1,6 +1,5 @@
 package com.dmdev.service;
 
-import com.dmdev.dao.UserDao;
 import com.dmdev.model.User;
 import org.junit.jupiter.api.Test;
 
